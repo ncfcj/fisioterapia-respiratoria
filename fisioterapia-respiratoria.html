@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fisioterapia Respiratória</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #F4F0EB;
+  --card: #FDFBF8;
+  --text: #1A1614;
+  --muted: #7A7168;
+  --border: #E2DDD6;
+  --ex1: #4A6FA5;
+  --ex1-light: #EAF0F8;
+  --ex2: #3A8C6E;
+  --ex2-light: #E6F4EF;
+  --ex3: #C47B2B;
+  --ex3-light: #FBF2E5;
+  --ex4: #B84E4E;
+  --ex4-light: #FAF0F0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* HEADER */
+header {
+  background: var(--text);
+  color: #F4F0EB;
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  border: 60px solid rgba(255,255,255,0.04);
+}
+header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  position: relative;
+}
+header h1 em {
+  font-style: italic;
+  color: #C9BFA8;
+}
+header p {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #A09885;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+.header-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  padding: 4px 14px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.12em;
+  color: #C9BFA8;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* INTRO */
+.intro {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
+}
+.intro-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+}
+.intro-box strong { color: var(--text); font-weight: 600; }
+
+/* FREQUENCIA BADGE */
+.freq-banner {
+  max-width: 680px;
+  margin: 1.25rem auto 0;
+  padding: 0 1.5rem;
+}
+.freq-inner {
+  background: var(--text);
+  color: #F4F0EB;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  letter-spacing: 0.005em;
+  line-height: 1.55;
+}
+.freq-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.freq-inner strong { color: #C9BFA8; font-weight: 600; }
+
+/* EXERCISES */
+.exercises {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ex-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ex-card:active { transform: scale(0.99); }
+
+.ex-header {
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ex-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ex-header-text h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.ex-header-text p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 3px;
+  letter-spacing: 0.01em;
+}
+
+/* SVG ANIMATION AREA */
+.ex-anim {
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.ex-anim svg { max-width: 100%; }
+
+/* STEPS */
+.ex-steps {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.step-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.step-row p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+}
+.step-row p strong { color: var(--text); font-weight: 600; }
+
+/* TIPS */
+.ex-tip {
+  margin: 0 1.5rem 1.25rem;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.825rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+.ex-tip span { line-height: 1.6; }
+
+/* FOOTER */
+footer {
+  background: var(--text);
+  color: #A09885;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+footer strong { color: #C9BFA8; font-weight: 600; }
+
+/* SVG text override */
+.ex-anim svg text { font-family: 'Instrument Sans', sans-serif; }
+@media (min-width: 600px) {
+  .ex-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Fisioterapia</div>
+  <h1>Exercícios<br/><em>Respiratórios</em></h1>
+  <p>Guia visual para expansão pulmonar durante internação e recuperação cirúrgica</p>
+</header>
+
+<div class="intro">
+  <div class="intro-box">
+    Pacientes internados ou em recuperação cirúrgica apresentam <strong>capacidade de expansão pulmonar reduzida</strong>. Esses exercícios redistribuem o ar para regiões de difícil acesso, prevenindo complicações como pneumonia.
+  </div>
+</div>
+
+<div class="freq-banner">
+  <div class="freq-inner">
+    <div class="freq-icon">🕐</div>
+    <div><strong>Frequência recomendada:</strong> 2× ao dia — 3 séries de 10 repetições cada exercício</div>
+  </div>
+</div>
+
+<div class="exercises">
+
+  <!-- EX 1: EM TEMPOS -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num" style="background:var(--ex1-light);color:var(--ex1);">01</div>
+      <div class="ex-header-text">
+        <h2>Respiração em Tempos</h2>
+        <p>Inspiração em 3 etapas com elevação dos braços</p>
+      </div>
+    </div>
+
+    <div class="ex-anim">
+      <svg viewBox="0 0 320 178" width="320" height="178" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="178" fill="#F4F0EB" rx="0"/>
+
+        <!-- Pessoa - cabeça -->
+        <ellipse cx="160" cy="38" rx="18" ry="20" fill="#E2DDD6"/>
+        <!-- Pessoa - tronco -->
+        <rect x="144" y="56" width="32" height="48" rx="8" fill="#E2DDD6"/>
+        <!-- Pessoa - pernas -->
+        <rect x="148" y="100" width="11" height="24" rx="5" fill="#D4CEC7"/>
+        <rect x="161" y="100" width="11" height="24" rx="5" fill="#D4CEC7"/>
+
+        <!-- Braços - animados -->
+        <line x1="144" y1="68" x2="102" y2="62" stroke="#4A6FA5" stroke-width="6" stroke-linecap="round">
+          <animate attributeName="y2" values="62;30;62" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          <animate attributeName="x2" values="102;108;102" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1"/>
+        </line>
+        <line x1="176" y1="68" x2="218" y2="62" stroke="#4A6FA5" stroke-width="6" stroke-linecap="round">
+          <animate attributeName="y2" values="62;30;62" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          <animate attributeName="x2" values="218;212;218" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1"/>
+        </line>
+
+        <!-- Pulmões -->
+        <ellipse cx="153" cy="74" rx="7" ry="10" fill="#4A6FA5" opacity="0.25">
+          <animate attributeName="rx" values="7;12;7" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1"/>
+          <animate attributeName="ry" values="10;15;10" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1"/>
+        </ellipse>
+        <ellipse cx="167" cy="74" rx="7" ry="10" fill="#4A6FA5" opacity="0.25">
+          <animate attributeName="rx" values="7;12;7" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1"/>
+          <animate attributeName="ry" values="10;15;10" dur="5s" repeatCount="indefinite" keyTimes="0;0.45;1"/>
+        </ellipse>
+
+        <!-- Nariz seta -->
+        <path d="M 128 36 Q 118 30 108 32" stroke="#4A6FA5" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
+        <text x="80" y="29" font-size="10" fill="#4A6FA5" font-family="sans-serif" text-anchor="middle">nariz</text>
+        <!-- Boca seta saída -->
+        <path d="M 192 42 Q 208 42 218 50" stroke="#B84E4E" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
+        <text x="230" y="48" font-size="10" fill="#B84E4E" font-family="sans-serif" text-anchor="middle">boca</text>
+
+        <!-- Labels tempos — mais largos, mais altos, bem espaçados -->
+        <rect x="8" y="134" width="76" height="26" rx="13" fill="#EAF0F8"/>
+        <text x="46" y="151" font-size="11" fill="#4A6FA5" font-family="sans-serif" text-anchor="middle" font-weight="500">inspire ×3</text>
+
+        <line x1="84" y1="147" x2="96" y2="147" stroke="#C0BBB5" stroke-width="1.5"/>
+        <polygon points="93,144 97,147 93,150" fill="#C0BBB5"/>
+
+        <rect x="97" y="134" width="56" height="26" rx="13" fill="#E2DDD6"/>
+        <text x="125" y="151" font-size="11" fill="#7A7168" font-family="sans-serif" text-anchor="middle">pausa</text>
+
+        <line x1="153" y1="147" x2="165" y2="147" stroke="#C0BBB5" stroke-width="1.5"/>
+        <polygon points="162,144 166,147 162,150" fill="#C0BBB5"/>
+
+        <rect x="166" y="134" width="82" height="26" rx="13" fill="#EAF0F8"/>
+        <text x="207" y="151" font-size="11" fill="#4A6FA5" font-family="sans-serif" text-anchor="middle">expire lento</text>
+      </svg>
+    </div>
+
+    <div class="ex-steps">
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex1);"></div>
+        <p>Inspire pelo <strong>nariz</strong> dividindo em 3 tempos curtos, elevando os braços progressivamente a cada tempo</p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex1);"></div>
+        <p>Expire <strong>lentamente pela boca</strong> em um único tempo contínuo, retornando os braços à posição inicial</p>
+      </div>
+    </div>
+    <div class="ex-tip" style="background:var(--ex1-light);">
+      <span style="color:var(--ex1);">💡</span>
+      <span style="color:var(--ex1);">Pode ser realizado sentado ou deitado. Os braços auxiliam na expansão da caixa torácica.</span>
+    </div>
+  </div>
+
+  <!-- EX 2: DIAFRAGMÁTICO -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num" style="background:var(--ex2-light);color:var(--ex2);">02</div>
+      <div class="ex-header-text">
+        <h2>Respiração Diafragmática</h2>
+        <p>"Respire com a barriga" — ativa o músculo diafragma</p>
+      </div>
+    </div>
+
+    <div class="ex-anim">
+      <svg viewBox="0 0 320 178" width="320" height="178" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="178" fill="#F4F0EB"/>
+
+        <!-- Corpo -->
+        <ellipse cx="130" cy="38" rx="18" ry="20" fill="#E2DDD6"/>
+        <rect x="114" y="56" width="32" height="50" rx="8" fill="#E2DDD6"/>
+        <rect x="118" y="102" width="11" height="22" rx="5" fill="#D4CEC7"/>
+        <rect x="131" y="102" width="11" height="22" rx="5" fill="#D4CEC7"/>
+
+        <!-- Braço sobre abdômen -->
+        <line x1="114" y1="72" x2="80" y2="88" stroke="#3A8C6E" stroke-width="5" stroke-linecap="round"/>
+        <!-- Mão -->
+        <ellipse cx="72" cy="92" rx="12" ry="8" fill="#3A8C6E" opacity="0.7">
+          <animate attributeName="cy" values="92;85;92" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+        </ellipse>
+
+        <!-- Abdômen -->
+        <ellipse cx="130" cy="88" rx="14" ry="10" fill="#3A8C6E" opacity="0.2">
+          <animate attributeName="ry" values="10;16;10" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          <animate attributeName="rx" values="14;17;14" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+        </ellipse>
+
+        <!-- Diafragma linha animada -->
+        <path d="M 118 78 Q 130 82 142 78" stroke="#3A8C6E" stroke-width="2" fill="none" stroke-dasharray="4,2" opacity="0.6">
+          <animate attributeName="d" values="M 118 78 Q 130 82 142 78;M 118 84 Q 130 92 142 84;M 118 78 Q 130 82 142 78" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+        </path>
+
+        <!-- Setas e labels laterais -->
+        <text x="175" y="70" font-size="11" fill="#3A8C6E" font-family="sans-serif" font-weight="500">diafragma</text>
+        <text x="175" y="83" font-size="11" fill="#3A8C6E" font-family="sans-serif">desce ↓</text>
+        <line x1="148" y1="80" x2="170" y2="76" stroke="#3A8C6E" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+        <text x="175" y="100" font-size="11" fill="#3A8C6E" font-family="sans-serif" font-weight="500">barriga</text>
+        <text x="175" y="113" font-size="11" fill="#3A8C6E" font-family="sans-serif">sobe ↑</text>
+        <line x1="148" y1="95" x2="170" y2="100" stroke="#3A8C6E" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+        <!-- Badges inferiores -->
+        <rect x="8" y="134" width="90" height="26" rx="13" fill="#E6F4EF"/>
+        <text x="53" y="151" font-size="11" fill="#3A8C6E" font-family="sans-serif" text-anchor="middle" font-weight="500">inspire pelo nariz</text>
+
+        <line x1="98" y1="147" x2="110" y2="147" stroke="#C0BBB5" stroke-width="1.5"/>
+        <polygon points="107,144 111,147 107,150" fill="#C0BBB5"/>
+
+        <rect x="111" y="134" width="86" height="26" rx="13" fill="#E6F4EF"/>
+        <text x="154" y="151" font-size="11" fill="#3A8C6E" font-family="sans-serif" text-anchor="middle">expire pela boca</text>
+      </svg>
+    </div>
+
+    <div class="ex-steps">
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex2);"></div>
+        <p>Coloque a <strong>mão sobre o abdômen</strong> com leve pressão</p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex2);"></div>
+        <p>Inspire pelo nariz de forma <strong>suave e profunda</strong> — a barriga deve subir empurrando a mão</p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex2);"></div>
+        <p>Expire pela boca — a barriga desce naturalmente</p>
+      </div>
+    </div>
+    <div class="ex-tip" style="background:var(--ex2-light);">
+      <span style="color:var(--ex2);">💡</span>
+      <span style="color:var(--ex2);">Use a expressão "encha a barriga" para facilitar o entendimento da técnica.</span>
+    </div>
+  </div>
+
+  <!-- EX 3: SMI -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num" style="background:var(--ex3-light);color:var(--ex3);">03</div>
+      <div class="ex-header-text">
+        <h2>Inspiração Máxima Sustentada</h2>
+        <p>SMI — máxima expansão com pausa de 3 segundos</p>
+      </div>
+    </div>
+
+    <div class="ex-anim">
+      <svg viewBox="0 0 320 178" width="320" height="178" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="178" fill="#F4F0EB"/>
+
+        <!-- Corpo -->
+        <ellipse cx="120" cy="38" rx="18" ry="20" fill="#E2DDD6"/>
+        <rect x="104" y="56" width="32" height="50" rx="8" fill="#E2DDD6"/>
+        <rect x="108" y="102" width="11" height="22" rx="5" fill="#D4CEC7"/>
+        <rect x="121" y="102" width="11" height="22" rx="5" fill="#D4CEC7"/>
+
+        <!-- Pulmões expandindo ao máximo -->
+        <ellipse cx="112" cy="72" rx="7" ry="11" fill="#C47B2B" opacity="0.3">
+          <animate attributeName="rx" values="7;14;14;7" dur="6s" repeatCount="indefinite" keyTimes="0;0.3;0.65;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.2 0 0.8 1;0.4 0 0.2 1"/>
+          <animate attributeName="ry" values="11;17;17;11" dur="6s" repeatCount="indefinite" keyTimes="0;0.3;0.65;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.2 0 0.8 1;0.4 0 0.2 1"/>
+        </ellipse>
+        <ellipse cx="128" cy="72" rx="7" ry="11" fill="#C47B2B" opacity="0.3">
+          <animate attributeName="rx" values="7;14;14;7" dur="6s" repeatCount="indefinite" keyTimes="0;0.3;0.65;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.2 0 0.8 1;0.4 0 0.2 1"/>
+          <animate attributeName="ry" values="11;17;17;11" dur="6s" repeatCount="indefinite" keyTimes="0;0.3;0.65;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.2 0 0.8 1;0.4 0 0.2 1"/>
+        </ellipse>
+
+        <!-- Timer card -->
+        <rect x="185" y="50" width="106" height="60" rx="12" fill="#FBF2E5" stroke="#E8C98A" stroke-width="1"/>
+        <text x="238" y="74" font-size="11" fill="#7A5A1E" font-family="sans-serif" text-anchor="middle">segure o ar</text>
+        <text x="238" y="96" font-size="22" font-weight="700" fill="#C47B2B" font-family="sans-serif" text-anchor="middle">3s</text>
+
+        <line x1="140" y1="72" x2="180" y2="72" stroke="#E8C98A" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <polygon points="177,69 181,72 177,75" fill="#E8C98A"/>
+
+        <!-- Badges inferiores — mais largos e mais altos -->
+        <rect x="8" y="134" width="80" height="26" rx="13" fill="#FBF2E5"/>
+        <text x="48" y="151" font-size="11" fill="#C47B2B" font-family="sans-serif" text-anchor="middle" font-weight="500">inspire máx</text>
+
+        <line x1="88" y1="147" x2="100" y2="147" stroke="#C0BBB5" stroke-width="1.5"/>
+        <polygon points="97,144 101,147 97,150" fill="#C0BBB5"/>
+
+        <rect x="101" y="134" width="72" height="26" rx="13" fill="#E2DDD6"/>
+        <text x="137" y="151" font-size="11" fill="#7A7168" font-family="sans-serif" text-anchor="middle">segure 3s</text>
+
+        <line x1="173" y1="147" x2="185" y2="147" stroke="#C0BBB5" stroke-width="1.5"/>
+        <polygon points="182,144 186,147 182,150" fill="#C0BBB5"/>
+
+        <rect x="186" y="134" width="88" height="26" rx="13" fill="#FBF2E5"/>
+        <text x="230" y="151" font-size="11" fill="#C47B2B" font-family="sans-serif" text-anchor="middle">expire suave</text>
+      </svg>
+    </div>
+
+    <div class="ex-steps">
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex3);"></div>
+        <p>Inspire pelo nariz de forma <strong>lenta</strong> até atingir sua máxima capacidade pulmonar</p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex3);"></div>
+        <p><strong>Segure o ar por 3 segundos</strong> sem soltar</p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex3);"></div>
+        <p>Expire <strong>suavemente</strong> pela boca de forma controlada</p>
+      </div>
+    </div>
+    <div class="ex-tip" style="background:var(--ex3-light);">
+      <span style="color:var(--ex3);">💡</span>
+      <span style="color:var(--ex3);">Este exercício é especialmente eficaz após cirurgias torácicas e abdominais para reexpandir áreas colapsadas.</span>
+    </div>
+  </div>
+
+  <!-- EX 4: FRACIONADA -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num" style="background:var(--ex4-light);color:var(--ex4);">04</div>
+      <div class="ex-header-text">
+        <h2>Inspiração Fracionada</h2>
+        <p>IF — inspirações curtas e sucessivas com pausa entre elas</p>
+      </div>
+    </div>
+
+    <div class="ex-anim">
+      <svg viewBox="0 0 320 210" width="320" height="210" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="210" fill="#F4F0EB"/>
+
+        <!-- Corpo à esquerda -->
+        <ellipse cx="52" cy="36" rx="16" ry="18" fill="#E2DDD6"/>
+        <rect x="37" y="52" width="30" height="46" rx="7" fill="#E2DDD6"/>
+        <rect x="41" y="95" width="10" height="22" rx="5" fill="#D4CEC7"/>
+        <rect x="53" y="95" width="10" height="22" rx="5" fill="#D4CEC7"/>
+
+        <!-- Pulmões crescendo -->
+        <ellipse cx="46" cy="70" rx="6" ry="9" fill="#B84E4E" opacity="0.25">
+          <animate attributeName="rx" values="6;10;10;13;13;6" dur="7s" repeatCount="indefinite" keyTimes="0;0.2;0.35;0.55;0.75;1"/>
+          <animate attributeName="ry" values="9;12;12;15;15;9" dur="7s" repeatCount="indefinite" keyTimes="0;0.2;0.35;0.55;0.75;1"/>
+        </ellipse>
+        <ellipse cx="58" cy="70" rx="6" ry="9" fill="#B84E4E" opacity="0.25">
+          <animate attributeName="rx" values="6;10;10;13;13;6" dur="7s" repeatCount="indefinite" keyTimes="0;0.2;0.35;0.55;0.75;1"/>
+          <animate attributeName="ry" values="9;12;12;15;15;9" dur="7s" repeatCount="indefinite" keyTimes="0;0.2;0.35;0.55;0.75;1"/>
+        </ellipse>
+
+        <!-- Partículas entrando -->
+        <circle r="4" fill="#B84E4E" opacity="0">
+          <animate attributeName="opacity" values="0;0.6;0;0;0;0;0" dur="7s" repeatCount="indefinite" keyTimes="0;0.12;0.22;0.4;0.6;0.8;1"/>
+          <animate attributeName="cx" values="100;68;68;68;68;68;68" dur="7s" repeatCount="indefinite" keyTimes="0;0.12;0.22;0.4;0.6;0.8;1"/>
+          <animate attributeName="cy" values="55;55;55;55;55;55;55" dur="7s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="4" fill="#B84E4E" opacity="0">
+          <animate attributeName="opacity" values="0;0;0;0.6;0;0;0" dur="7s" repeatCount="indefinite" keyTimes="0;0.3;0.38;0.48;0.58;0.8;1"/>
+          <animate attributeName="cx" values="100;100;100;68;68;68;68" dur="7s" repeatCount="indefinite" keyTimes="0;0.3;0.38;0.48;0.58;0.8;1"/>
+          <animate attributeName="cy" values="65;65;65;65;65;65;65" dur="7s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="4" fill="#B84E4E" opacity="0">
+          <animate attributeName="opacity" values="0;0;0;0;0.6;0;0" dur="7s" repeatCount="indefinite" keyTimes="0;0.5;0.58;0.62;0.72;0.82;1"/>
+          <animate attributeName="cx" values="100;100;100;100;68;68;68" dur="7s" repeatCount="indefinite" keyTimes="0;0.5;0.58;0.62;0.72;0.82;1"/>
+          <animate attributeName="cy" values="75;75;75;75;75;75;75" dur="7s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Linha divisória -->
+        <line x1="95" y1="16" x2="95" y2="194" stroke="#E2DDD6" stroke-width="1"/>
+
+        <!-- Fluxo vertical de etapas à direita -->
+
+        <!-- Etapa 1 -->
+        <rect x="106" y="14" width="200" height="34" rx="10" fill="#FAF0F0" stroke="#EDACAC" stroke-width="0.5"/>
+        <text x="206" y="28" font-size="11" fill="#B84E4E" font-family="sans-serif" text-anchor="middle" font-weight="500">inspire curto pelo nariz</text>
+        <text x="206" y="41" font-size="10" fill="#7A7168" font-family="sans-serif" text-anchor="middle">inspiração nasal rápida</text>
+
+        <!-- Seta 1→2 -->
+        <line x1="206" y1="48" x2="206" y2="58" stroke="#EDACAC" stroke-width="1.5"/>
+        <polygon points="202,55 206,60 210,55" fill="#EDACAC"/>
+
+        <!-- Etapa 2 -->
+        <rect x="106" y="60" width="200" height="34" rx="10" fill="#E2DDD6" stroke="#C0BBB5" stroke-width="0.5"/>
+        <text x="206" y="74" font-size="11" fill="#7A7168" font-family="sans-serif" text-anchor="middle" font-weight="500">pausa (apneia)</text>
+        <text x="206" y="87" font-size="10" fill="#7A7168" font-family="sans-serif" text-anchor="middle">segure brevemente</text>
+
+        <!-- Seta 2→3 com label repetir -->
+        <line x1="206" y1="94" x2="206" y2="104" stroke="#EDACAC" stroke-width="1.5"/>
+        <polygon points="202,101 206,106 210,101" fill="#EDACAC"/>
+        <rect x="220" y="95" width="52" height="16" rx="8" fill="#FAF0F0"/>
+        <text x="246" y="106" font-size="9" fill="#B84E4E" font-family="sans-serif" text-anchor="middle">repetir 3–4×</text>
+
+        <!-- Etapa 3 -->
+        <rect x="106" y="106" width="200" height="34" rx="10" fill="#FAF0F0" stroke="#EDACAC" stroke-width="0.5"/>
+        <text x="206" y="120" font-size="11" fill="#B84E4E" font-family="sans-serif" text-anchor="middle" font-weight="500">inspire curto pelo nariz</text>
+        <text x="206" y="133" font-size="10" fill="#7A7168" font-family="sans-serif" text-anchor="middle">até pulmão cheio</text>
+
+        <!-- Seta 3→4 -->
+        <line x1="206" y1="140" x2="206" y2="150" stroke="#EDACAC" stroke-width="1.5"/>
+        <polygon points="202,147 206,152 210,147" fill="#EDACAC"/>
+
+        <!-- Etapa 4 — expire -->
+        <rect x="106" y="152" width="200" height="42" rx="10" fill="#B84E4E"/>
+        <text x="206" y="169" font-size="11" fill="#FAF0F0" font-family="sans-serif" text-anchor="middle" font-weight="500">expire pela boca</text>
+        <text x="206" y="185" font-size="10" fill="#F5C4B3" font-family="sans-serif" text-anchor="middle">expiração lenta e contínua</text>
+      </svg>
+    </div>
+
+    <div class="ex-steps">
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex4);"></div>
+        <p>Realize inspirações nasais <strong>curtas e sucessivas</strong>, com uma breve pausa (apneia) após cada uma</p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex4);"></div>
+        <p>Continue as inspirações fracionadas até sentir o <strong>pulmão completamente cheio</strong></p>
+      </div>
+      <div class="step-row">
+        <div class="step-dot" style="background:var(--ex4);"></div>
+        <p>Expire pela <strong>boca</strong> de forma contínua e controlada</p>
+      </div>
+    </div>
+    <div class="ex-tip" style="background:var(--ex4-light);">
+      <span style="color:var(--ex4);">💡</span>
+      <span style="color:var(--ex4);">Indicado para pacientes com menor capacidade ventilatória — o fracionamento facilita a expansão gradual.</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Realize os exercícios <strong>2× ao dia — 3 séries de 10 repetições</strong></p>
+  <p style="margin-top:6px;">Sempre sob orientação do seu fisioterapeuta</p>
+</footer>
+
+</body>
+</html>
